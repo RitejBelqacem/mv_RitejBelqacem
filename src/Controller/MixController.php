@@ -26,5 +26,7 @@ class MixController extends AbstractController
             $mix->getId(),
             $mix->getTrackCount()
         ));
+        $genres = ['pop', 'rock'];
+        $mix->setGenre($genres[array_rand($genres)]);
     }
 }
