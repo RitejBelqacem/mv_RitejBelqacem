@@ -2,113 +2,77 @@
 
 namespace App\Entity;
 
-use App\Repository\VinylMixRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VinylMixRepository;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: VinylMixRepository::class)]
 class VinylMix
+
 {
+    use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column()]
     private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
-
     #[ORM\Column]
     private ?int $trackCount = null;
-
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
-
-    #[ORM\Column]
-    private \DateTimeImmutable $createdAt;
-
     #[ORM\Column]
     private int $votes = 0;
-    public function  __construct()
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getTitle(): ?string
     {
         return $this->title;
     }
-
-    public function setTitle(string $title): static
+    public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
-
     public function getDescription(): ?string
     {
         return $this->description;
     }
-
-    public function setDescription(?string $description): static
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
-
     public function getTrackCount(): ?int
     {
         return $this->trackCount;
     }
-
-    public function setTrackCount(int $trackCount): static
+    public function setTrackCount(int $trackCount): self
     {
         $this->trackCount = $trackCount;
-
         return $this;
     }
-
     public function getGenre(): ?string
     {
         return $this->genre;
     }
-
-    public function setGenre(string $genre): static
+    public function setGenre(string $genre): self
     {
         $this->genre = $genre;
-
         return $this;
     }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getVotes(): ?int
     {
         return $this->votes;
     }
-
-    public function setVotes(int $votes): static
+    public function setVotes(int $votes): self
     {
         $this->votes = $votes;
-
         return $this;
     }
     public function upVote(): void
@@ -132,5 +96,4 @@ class VinylMix
             $width
         );
     }
-
 }
