@@ -22,9 +22,7 @@ class VinylMixRepository extends ServiceEntityRepository
         parent::__construct($registry, VinylMix::class);
     }
 
-    /**
-     * @return VinylMix[] Returns an array of VinylMix objects
-     */
+   
     public function findByExampleField($value): array
     {
         return $this->createQueryBuilder('v')
@@ -35,7 +33,7 @@ class VinylMixRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    public function findAllOrderedByVotes(string $genre = null): array
+    public function createOrderedByVotesQueryBuilder(string $genre = null): QueryBuilder
 
     {
 
@@ -45,9 +43,7 @@ class VinylMixRepository extends ServiceEntityRepository
             $queryBuilder->andWhere('mix.genre = :genre')
                 ->setParameter('genre', $genre);
         }
-        return $queryBuilder
-            ->getQuery()
-            ->getResult();
+        return $queryBuilder;
     }
 
     //    public function findOneBySomeField($value): ?VinylMix

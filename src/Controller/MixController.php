@@ -37,7 +37,7 @@ class MixController extends AbstractController
     public function show(VinylMix $mix): Response
     {
         return $this->render('mix/show.html.twig', [
-            'slug' => $mix->getSlug(),
+            'mix' => $mix,
         ]);
     }
 
