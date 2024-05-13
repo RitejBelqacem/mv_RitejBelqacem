@@ -32,7 +32,7 @@ class MixController extends AbstractController
         $genres = ['pop', 'rock'];
         $mix->setGenre($genres[array_rand($genres)]);
     }
-    //#[Route('/mix/{id}')]
+
     #[Route('/mix/{slug}', name: 'app_mix_show')]
     public function show(VinylMix $mix): Response
     {
