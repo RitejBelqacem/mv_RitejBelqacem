@@ -56,4 +56,10 @@ class VinylController extends AbstractController
             'pager' => $pagerfanta,
         ]);
     }
+    #[Route('/form', name: 'app_form', methods: ['GET', 'POST'])]
+    public function form(Request $request, EntityManagerInterface $entityManager): Response
+    {
+
+        return $this->render('vinyl/form.html.twig', []);
+    }
 }
